@@ -1,0 +1,27 @@
+version: '3.4'
+
+services:
+  webapplication:
+    image: ${DOCKER_REGISTRY-}webapplication
+    build:
+      context: .
+      dockerfile: WebApplication/Dockerfile
+  
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: webapplication.database
+    hostname: webapplication.database
+    environment:
+        ACCEPT_EULA: "Y"
+        MSSQL_SA_PASSWORD: "123"
+    ports:
+        - "1433:1433"
+
+  mssqltools:
+    image: mcr.microsoft.com/mssql-tools
+    depends_on:
+        - sqlserver
+    volumes:
+        - ./DB.sql:/tmp/DB.sql
+        - ./init-db.sh:/tmp/init-db.sh
+    command: /bin/bash ./tmp/init-db.sh
