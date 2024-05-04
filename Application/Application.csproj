@@ -15,4 +15,11 @@
     <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="UseCases\Product\Create\" />
+    <Folder Include="UseCases\Product\Delete\" />
+    <Folder Include="UseCases\Product\GetAll\" />
+    <Folder Include="UseCases\Product\Update\" />
+  </ItemGroup>
+
 </Project>
