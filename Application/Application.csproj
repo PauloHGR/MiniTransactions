@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.9.0" />
     <PackageReference Include="MediatR" Version="12.2.0" />
   </ItemGroup>
@@ -16,10 +17,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="UseCases\Product\Create\" />
-    <Folder Include="UseCases\Product\Delete\" />
-    <Folder Include="UseCases\Product\GetAll\" />
-    <Folder Include="UseCases\Product\Update\" />
+    <Folder Include="UseCases\ProductCase\Delete\" />
+    <Folder Include="UseCases\ProductCase\GetAll\" />
+    <Folder Include="UseCases\ProductCase\Update\" />
   </ItemGroup>
 
 </Project>
