@@ -33,9 +33,9 @@ namespace Infrastructure.Repositories
             return products;
         }
 
-        public async Task<Product> GetByIdAsync(int id, CancellationToken cancellationToken)
+        public async Task<Product> GetByIdAsync(Guid id, CancellationToken cancellationToken)
         {
-            Product product = await _appDbContext.Products.FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
+            Product product = await _appDbContext.Products.FirstOrDefaultAsync(x => x.ProductId == id, cancellationToken);
             return product;
         }
 

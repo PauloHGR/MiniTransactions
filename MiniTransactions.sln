@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastru
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Presentation", "Presentation\Presentation.csproj", "{D776B256-6758-4DEF-BD6D-AD455C3B1EB8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication", "WebApplication\WebApplication.csproj", "{F66044DA-20AC-43F6-94B5-67F550CED7A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiniTransaction.WebApi", "WebApplication\MiniTransaction.WebApi.csproj", "{F66044DA-20AC-43F6-94B5-67F550CED7A2}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{DD62B835-1B9E-438F-9536-EE4D224764FB}"
 EndProject

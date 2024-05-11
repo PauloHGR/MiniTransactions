@@ -13,6 +13,6 @@ namespace Domain.Interfaces
         Task<List<Product>> GetAll(CancellationToken cancellationToken);
         void Delete(Product product);
         void Update(Product product);
-        Task<Product> GetByIdAsync(int id, CancellationToken cancellationToken);
+        Task<Product> GetByIdAsync(Guid id, CancellationToken cancellationToken);
     }
 }

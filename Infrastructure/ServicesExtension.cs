@@ -8,7 +8,7 @@ namespace Infrastructure
 {
     public static class ServicesExtension
     {
-        public static void ConfigurePersistenceApp(this IServiceCollection services,
+        public static IServiceCollection ConfigurePersistenceApp(this IServiceCollection services,
             IConfiguration configuration)
         {
             var _getConnectionString = configuration.GetConnectionString("connSQLSERVER");
@@ -16,6 +16,8 @@ namespace Infrastructure
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IProductRepository, ProductRepository>();
+
+            return services;
         }
     }
 }
