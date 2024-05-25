@@ -6,14 +6,24 @@ services:
     build:
       context: .
       dockerfile: WebApplication/Dockerfile
-  
+
+  #migrations:
+  #  image: service-migrations
+  #  container_name: service-migrations
+  #  build:
+  #    context: .
+  #    dockerfile: WebApplication/Dockerfile
+  #    target: migrations
+  #  depends_on:
+  #      - mssqltools
+
   sqlserver:
     image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: webapplication.database
     hostname: webapplication.database
     environment:
         ACCEPT_EULA: "Y"
-        MSSQL_SA_PASSWORD: "123"
+        MSSQL_SA_PASSWORD: "geK!o940"
     ports:
         - "1433:1433"
 

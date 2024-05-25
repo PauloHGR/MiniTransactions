@@ -1,1 +1,1 @@
-/opt/mssql-tools/bin/sqlcmd -S sqlserver -U sa -P 123 -i /tmp/DB.sql
+/opt/mssql-tools/bin/sqlcmd -S sqlserver -U sa -P geK!o940 -i /tmp/DB.sql
