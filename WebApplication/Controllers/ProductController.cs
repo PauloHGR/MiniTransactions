@@ -1,4 +1,5 @@
 ﻿using Application.UseCases.Product.Create;
+using Application.UseCases.ProductCase.GetAll;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,6 +22,13 @@ namespace WebApplication.Controllers
         {
             CreateProductResponse response = await _mediator.Send(request, cancellationToken);
             return Ok(response);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<GetAllProductResponse>> GetProducts(CancellationToken cancellationToken)
+        {
+            var result = await _mediator.Send(new GetAllProductRequest(), cancellationToken);
+            return Ok(result);
         }
     }
 }

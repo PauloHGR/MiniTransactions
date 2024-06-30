@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <Folder Include="UseCases\ProductCase\Delete\" />
-    <Folder Include="UseCases\ProductCase\GetAll\" />
     <Folder Include="UseCases\ProductCase\Update\" />
   </ItemGroup>
 

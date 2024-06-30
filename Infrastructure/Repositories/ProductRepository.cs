@@ -29,8 +29,7 @@ namespace Infrastructure.Repositories
 
         public async Task<List<Product>> GetAll(CancellationToken cancellationToken)
         {
-            var products = await _appDbContext.Products.ToListAsync(cancellationToken);
-            return products;
+            return await _appDbContext.Products.ToListAsync(cancellationToken);
         }
 
         public async Task<Product> GetByIdAsync(Guid id, CancellationToken cancellationToken)

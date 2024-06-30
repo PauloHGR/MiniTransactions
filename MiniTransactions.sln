@@ -15,8 +15,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Presentation", "Presentatio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiniTransaction.WebApi", "WebApplication\MiniTransaction.WebApi.csproj", "{F66044DA-20AC-43F6-94B5-67F550CED7A2}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{DD62B835-1B9E-438F-9536-EE4D224764FB}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,10 +41,6 @@ Global
 		{F66044DA-20AC-43F6-94B5-67F550CED7A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F66044DA-20AC-43F6-94B5-67F550CED7A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F66044DA-20AC-43F6-94B5-67F550CED7A2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DD62B835-1B9E-438F-9536-EE4D224764FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DD62B835-1B9E-438F-9536-EE4D224764FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DD62B835-1B9E-438F-9536-EE4D224764FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DD62B835-1B9E-438F-9536-EE4D224764FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
