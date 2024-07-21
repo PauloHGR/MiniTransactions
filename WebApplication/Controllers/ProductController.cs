@@ -1,6 +1,7 @@
 ﻿using Application.UseCases.Product.Create;
 using Application.UseCases.ProductCase.Delete;
 using Application.UseCases.ProductCase.GetAll;
+using Application.UseCases.ProductCase.Update;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -34,6 +35,13 @@ namespace WebApplication.Controllers
 
         [HttpDelete]
         public async Task<ActionResult<DeleteProductResponse>> DeleteProduct([FromQuery]DeleteProductRequest request, CancellationToken cancellationToken)
+        {
+            await _mediator.Send(request, cancellationToken);
+            return NoContent();
+        }
+
+        [HttpPut]
+        public async Task<ActionResult<UpdateProductResponse>> UpdateProduct(UpdateProductRequest request, CancellationToken cancellationToken)
         {
             await _mediator.Send(request, cancellationToken);
             return NoContent();
