@@ -1,5 +1,6 @@
 ﻿using Application.UseCases.Product.Create;
 using AutoMapper;
+using Domain.Exceptions;
 using Domain.Interfaces;
 using MediatR;
 using System;
@@ -23,11 +24,11 @@ namespace Application.UseCases.ProductCase.Update
         }
         public async Task<UpdateProductResponse> Handle(UpdateProductRequest request, CancellationToken cancellationToken)
         {
-            var product = await _repository.GetByIdAsync(request.Id, cancellationToken);
+            var product = await _repository.GetByIdAsync(request.ProductId, cancellationToken);
 
             if (product == null)
             {
-                throw new Exception();
+                throw new NotFoundException($"Product not found for Product Id{request.ProductId}");
             }
 
             product.Name = request.Name;

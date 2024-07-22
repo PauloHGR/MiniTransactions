@@ -2,5 +2,5 @@
 
 namespace Application.UseCases.ProductCase.Update
 {
-    public sealed record UpdateProductRequest(Guid Id, string Name, double Price) : IRequest<UpdateProductResponse>;
+    public sealed record UpdateProductRequest(Guid ProductId, string Name, int Quantity, double Price) : IRequest<UpdateProductResponse>;
 }

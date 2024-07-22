@@ -1,5 +1,8 @@
 using Application;
 using Infrastructure;
+using Microsoft.AspNetCore.Diagnostics;
+using MiniTransaction.WebApi.Middleware;
+using System.Net;
 
 var builder = Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder(args);
 
@@ -23,6 +26,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.MapControllers();
+
+app.UseMiddleware<ApiExceptionHandlerMiddleware>();
 
 app.Run();
 
