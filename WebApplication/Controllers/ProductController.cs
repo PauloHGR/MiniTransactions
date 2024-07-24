@@ -1,5 +1,6 @@
 ﻿using Application.UseCases.Product.Create;
 using Application.UseCases.ProductCase.Delete;
+using Application.UseCases.ProductCase.Get;
 using Application.UseCases.ProductCase.GetAll;
 using Application.UseCases.ProductCase.Update;
 using MediatR;
@@ -33,9 +34,20 @@ namespace WebApplication.Controllers
             return Ok(result);
         }
 
-        [HttpDelete]
-        public async Task<ActionResult<DeleteProductResponse>> DeleteProduct([FromQuery]DeleteProductRequest request, CancellationToken cancellationToken)
+        [HttpGet("product")]
+        public async Task<ActionResult<GetProductResponse>> GetProductById(Guid id, CancellationToken cancellationToken)
         {
+            GetProductRequest request = new(id);
+            var result = await _mediator.Send(request, cancellationToken);
+
+            return Ok(result);
+        }
+
+        [HttpDelete]
+        public async Task<ActionResult<DeleteProductResponse>> DeleteProduct([FromQuery]Guid id, CancellationToken cancellationToken)
+        {
+
+            DeleteProductRequest request = new(id);
             await _mediator.Send(request, cancellationToken);
             return NoContent();
         }
