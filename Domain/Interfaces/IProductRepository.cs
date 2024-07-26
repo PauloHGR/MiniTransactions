@@ -10,9 +10,10 @@ namespace Domain.Interfaces
     public interface IProductRepository
     {
         void Add(Product product);
-        Task<List<Product>> GetAll(CancellationToken cancellationToken);
+        Task<IEnumerable<Product>> GetAll(CancellationToken cancellationToken);
         void Delete(Product product);
         void Update(Product product);
         Task<Product> GetByIdAsync(Guid id, CancellationToken cancellationToken);
+        IEnumerable<Product> GetProductsFiltered(Func<Product, bool> predicate);
     }
 }

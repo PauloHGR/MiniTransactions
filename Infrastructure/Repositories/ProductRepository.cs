@@ -27,9 +27,15 @@ namespace Infrastructure.Repositories
             _appDbContext.Products.Remove(product);
         }
 
-        public async Task<List<Product>> GetAll(CancellationToken cancellationToken)
+        public async Task<IEnumerable<Product>> GetAll(CancellationToken cancellationToken)
         {
             return await _appDbContext.Products.ToListAsync(cancellationToken);
+        }
+
+        public IEnumerable<Product> GetProductsFiltered(Func<Product, bool> predicate)
+        {
+            var product = _appDbContext.Products;
+            return product.Where(predicate);
         }
 
         public async Task<Product> GetByIdAsync(Guid id, CancellationToken cancellationToken)

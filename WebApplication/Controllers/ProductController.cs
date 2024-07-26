@@ -1,4 +1,5 @@
-﻿using Application.UseCases.Product.Create;
+﻿using Application.Enums;
+using Application.UseCases.Product.Create;
 using Application.UseCases.ProductCase.Delete;
 using Application.UseCases.ProductCase.Get;
 using Application.UseCases.ProductCase.GetAll;
@@ -28,9 +29,18 @@ namespace WebApplication.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<GetAllProductResponse>> GetProducts(CancellationToken cancellationToken)
+        public async Task<ActionResult<GetAllProductResponse>> GetProducts(
+            string Name,
+            double Price,
+            int Quantity,
+            int Size,
+            int Offset,
+            ProductSortField sortField,
+            SortOrder order,
+            CancellationToken cancellationToken)
         {
-            var result = await _mediator.Send(new GetAllProductRequest(), cancellationToken);
+            GetAllProductRequest request = new(Name, Quantity, Price, Size, Offset, sortField, order);
+            var result = await _mediator.Send(request, cancellationToken);
             return Ok(result);
         }
 

@@ -10,6 +10,7 @@ namespace Application.UseCases.ProductCase.GetAll
     public sealed class GetAllMapper : Profile
     {
         public GetAllMapper() {
+            CreateMap<GetAllProductRequest, Domain.Products.Product>();
             CreateMap<Domain.Products.Product, GetAllProductResponse>();
         }
     }
