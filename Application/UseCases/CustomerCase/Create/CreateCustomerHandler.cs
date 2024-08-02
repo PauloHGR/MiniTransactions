@@ -25,7 +25,7 @@ namespace Application.UseCases.CustomerCase.Create
         {
             var customer = _mapper.Map<Domain.Customers.Customer>(request);
 
-            await _customerRepository.AddAsync(customer, cancellationToken);
+            _customerRepository.Add(customer);
             await _unitOfWork.CompleteAsync(cancellationToken);
 
             return _mapper.Map<CreateCustomerResponse>(customer);

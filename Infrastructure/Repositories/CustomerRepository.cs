@@ -11,9 +11,9 @@ namespace Infrastructure.Repositories
         {
             _appDbContext = appDbContext;
         }
-        public async Task AddAsync(Customer customer, CancellationToken cancellationToken)
+        public void Add(Customer customer)
         {
-            await _appDbContext.Customers.AddAsync(customer, cancellationToken);
+            _appDbContext.Customers.Add(customer);
         }
     }
 }
