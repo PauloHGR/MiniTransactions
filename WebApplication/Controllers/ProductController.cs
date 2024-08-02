@@ -44,7 +44,7 @@ namespace WebApplication.Controllers
             return Ok(result);
         }
 
-        [HttpGet("product")]
+        [HttpGet("product/{id}")]
         public async Task<ActionResult<GetProductResponse>> GetProductById(Guid id, CancellationToken cancellationToken)
         {
             GetProductRequest request = new(id);
@@ -53,8 +53,8 @@ namespace WebApplication.Controllers
             return Ok(result);
         }
 
-        [HttpDelete]
-        public async Task<ActionResult<DeleteProductResponse>> DeleteProduct([FromQuery]Guid id, CancellationToken cancellationToken)
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<DeleteProductResponse>> DeleteProduct(Guid id, CancellationToken cancellationToken)
         {
 
             DeleteProductRequest request = new(id);
