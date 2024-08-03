@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Application.UseCases.ProductCase.GetAll
 {
-    public sealed record GetAllProductResponse
+    public sealed record GetAllProductsResponse
     {
         public Guid ProductId { get; set; }
         public string Name { get; set; } 

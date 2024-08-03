@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Domain.Exceptions;
 using Domain.Interfaces;
 using MediatR;
 using System;
@@ -27,7 +28,7 @@ namespace Application.UseCases.ProductCase.Delete
             var product = await _productRepository.GetByIdAsync(request.Id, cancellationToken);
             if(product == null)
             {
-                throw new Exception();
+                throw new NotFoundException($"Product not found for Product Id {request.Id}");
             }
 
             _productRepository.Delete(product);

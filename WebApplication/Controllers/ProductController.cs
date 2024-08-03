@@ -29,7 +29,7 @@ namespace WebApplication.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<GetAllProductResponse>> GetProducts(
+        public async Task<ActionResult<GetAllProductsResponse>> GetProducts(
             string Name,
             double Price,
             int Quantity,
@@ -39,7 +39,7 @@ namespace WebApplication.Controllers
             SortOrder order,
             CancellationToken cancellationToken)
         {
-            GetAllProductRequest request = new(Name, Quantity, Price, Size, Offset, sortField, order);
+            GetAllProductsRequest request = new(Name, Quantity, Price, Size, Offset, sortField, order);
             var result = await _mediator.Send(request, cancellationToken);
             return Ok(result);
         }

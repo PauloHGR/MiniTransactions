@@ -2,9 +2,9 @@
 
 namespace Application.UseCases.ProductCase.GetAll
 {
-    public sealed class GetAllProductValidation : AbstractValidator<GetAllProductRequest>
+    public sealed class GetAllProductsValidation : AbstractValidator<GetAllProductsRequest>
     {
-        public GetAllProductValidation() {
+        public GetAllProductsValidation() {
             RuleFor(p => p.Quantity).GreaterThan(-1);
             RuleFor(p => p.Price).GreaterThan(-1);
         }

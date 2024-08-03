@@ -1,26 +1,19 @@
 ﻿using AutoMapper;
 using Domain.Interfaces;
-using Domain.Products;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.UseCases.ProductCase.GetAll
 {
-    public class GetAllHandler : IRequestHandler<GetAllProductRequest, List<GetAllProductResponse>>
+    public class GetAllProductsHandler : IRequestHandler<GetAllProductsRequest, List<GetAllProductsResponse>>
     {
         private readonly IProductRepository _repository;
         private readonly IMapper _mapper;
-        public GetAllHandler(IProductRepository repository, IMapper mapper) { 
+        public GetAllProductsHandler(IProductRepository repository, IMapper mapper) { 
             _repository = repository;
             _mapper = mapper;
         }
 
-        private bool IsRequestFilterValid(GetAllProductRequest request)
+        private bool IsRequestFilterValid(GetAllProductsRequest request)
         {
             if (!string.IsNullOrEmpty(request.Name) ||
                 request.Price != 0 ||
@@ -29,7 +22,7 @@ namespace Application.UseCases.ProductCase.GetAll
 
             return false;
         }
-        public async Task<List<GetAllProductResponse>> Handle(GetAllProductRequest request, CancellationToken cancellationToken)
+        public async Task<List<GetAllProductsResponse>> Handle(GetAllProductsRequest request, CancellationToken cancellationToken)
         {
             Func<Domain.Products.Product, object> func = request.ProductSortField.ToString() switch
             {
@@ -48,14 +41,14 @@ namespace Application.UseCases.ProductCase.GetAll
                 products_filtered = request.SortOrder == Enums.SortOrder.ASC ? products_filtered.OrderBy(a => a.Name) : products_filtered.OrderByDescending(func);
                 products_filtered = products_filtered.Skip(request.Offset).Take(request.Size);
 
-                return _mapper.Map<List<GetAllProductResponse>>(products_filtered);
+                return _mapper.Map<List<GetAllProductsResponse>>(products_filtered);
             }
 
             var products = await _repository.GetAll(cancellationToken);
             products = request.SortOrder == Enums.SortOrder.ASC ? products.OrderBy(func) : products.OrderByDescending(func);
             products = products.Skip(request.Offset).Take(request.Size).ToList();
 
-            return _mapper.Map<List<GetAllProductResponse>>(products);
+            return _mapper.Map<List<GetAllProductsResponse>>(products);
         }
     }
 }
