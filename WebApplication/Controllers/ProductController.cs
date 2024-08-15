@@ -45,9 +45,9 @@ namespace WebApplication.Controllers
         }
 
         [HttpGet("product/{id}")]
-        public async Task<ActionResult<GetProductResponse>> GetProductById(Guid id, CancellationToken cancellationToken)
+        public async Task<ActionResult<GetProductByIdResponse>> GetProductById(Guid id, CancellationToken cancellationToken)
         {
-            GetProductRequest request = new(id);
+            GetProductByIdRequest request = new(id);
             var result = await _mediator.Send(request, cancellationToken);
 
             return Ok(result);

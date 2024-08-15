@@ -1,9 +1,11 @@
-﻿using Domain.Interfaces;
+﻿using Domain.Customers;
+using Domain.Interfaces;
 using Domain.Products;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -27,20 +29,15 @@ namespace Infrastructure.Repositories
             _appDbContext.Products.Remove(product);
         }
 
-        public async Task<IEnumerable<Product>> GetAll(CancellationToken cancellationToken)
+        public async Task<IEnumerable<Product>> GetProductsAsync(CancellationToken cancellationToken, Expression<Func<Product, bool>>? filter = null)
         {
-            return await _appDbContext.Products.ToListAsync(cancellationToken);
-        }
-
-        public IEnumerable<Product> GetProductsFiltered(Func<Product, bool> predicate)
-        {
-            var product = _appDbContext.Products;
-            return product.Where(predicate);
+            var products = _appDbContext.Products;
+            return filter == null ? await products.ToListAsync(cancellationToken) : await products.Where(filter).ToListAsync(cancellationToken);
         }
 
         public async Task<Product> GetByIdAsync(Guid id, CancellationToken cancellationToken)
         {
-            Product product = await _appDbContext.Products.FirstOrDefaultAsync(x => x.ProductId == id, cancellationToken);
+            Product? product = await _appDbContext.Products.FirstOrDefaultAsync(x => x.ProductId == id, cancellationToken);
             return product;
         }
 

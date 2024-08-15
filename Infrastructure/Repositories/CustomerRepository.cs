@@ -3,6 +3,7 @@ using Domain.Interfaces;
 using Domain.Products;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace Infrastructure.Repositories
 {
@@ -34,15 +35,10 @@ namespace Infrastructure.Repositories
             _appDbContext.Customers.Remove(customer);
         }
 
-        public async Task<IEnumerable<Customer>> GetAllCustomersAsync(CancellationToken cancellationToken)
-        {
-            return await _appDbContext.Customers.ToListAsync(cancellationToken);
-        }
-
-        public IEnumerable<Customer> GetCustomersByFilters(Func<Customer, bool> predicate)
+        public async Task<IEnumerable<Customer>> GetCustomersAsync(CancellationToken cancellationToken, Expression<Func<Customer, bool>>? filter = null)
         {
             var customer = _appDbContext.Customers;
-            return customer.Where(predicate);
+            return filter == null ? await customer.ToListAsync(cancellationToken) : await customer.Where(filter).ToListAsync(cancellationToken);
         }
     }
 }

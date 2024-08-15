@@ -34,7 +34,7 @@ namespace Application.UseCases.ProductCase.GetAll
 
             if (IsRequestFilterValid(request))
             {
-                var products_filtered = _repository.GetProductsFiltered(p => p.Name == request.Name || 
+                var products_filtered = await _repository.GetProductsAsync(cancellationToken, p => p.Name == request.Name || 
                 p.Quantity == request.Quantity || 
                 p.Price == request.Price);
 
@@ -44,7 +44,7 @@ namespace Application.UseCases.ProductCase.GetAll
                 return _mapper.Map<List<GetAllProductsResponse>>(products_filtered);
             }
 
-            var products = await _repository.GetAll(cancellationToken);
+            var products = await _repository.GetProductsAsync(cancellationToken);
             products = request.SortOrder == Enums.SortOrder.ASC ? products.OrderBy(func) : products.OrderByDescending(func);
             products = products.Skip(request.Offset).Take(request.Size).ToList();
 

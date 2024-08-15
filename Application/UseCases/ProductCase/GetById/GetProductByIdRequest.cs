@@ -7,5 +7,5 @@ using System.Threading.Tasks;
 
 namespace Application.UseCases.ProductCase.Get
 {
-    public sealed record GetProductRequest(Guid ProductId) : IRequest<GetProductResponse>;
+    public sealed record GetProductByIdRequest(Guid ProductId) : IRequest<GetProductByIdResponse>;
 }

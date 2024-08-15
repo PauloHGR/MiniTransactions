@@ -1,4 +1,6 @@
 ﻿using Domain.Customers;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace Domain.Interfaces
 {
@@ -8,7 +10,6 @@ namespace Domain.Interfaces
         void Remove(Customer customer);
         Task<Customer> GetCustomerByIdAsync(Guid CustomerId, CancellationToken cancellationToken);
         Task<Customer> GetCustomerByCPFAsync(string CPF, CancellationToken cancellationToken);
-        Task<IEnumerable<Customer>> GetAllCustomersAsync(CancellationToken cancellationToken);
-        IEnumerable<Customer> GetCustomersByFilters(Func<Customer, bool> predicate);
+        Task<IEnumerable<Customer>> GetCustomersAsync(CancellationToken cancellationToken, Expression<Func<Customer, bool>>? filter = null);
     }
 }
