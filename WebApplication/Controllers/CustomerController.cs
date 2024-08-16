@@ -34,10 +34,10 @@ namespace MiniTransaction.WebApi.Controllers
             return Ok(response);
         }
 
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<DeleteCustomerResponse>> DeleteCustomerAsync(Guid id, CancellationToken cancellationToken)
+        [HttpDelete("{CPF}")]
+        public async Task<ActionResult<DeleteCustomerResponse>> DeleteCustomerAsync(string CPF, CancellationToken cancellationToken)
         {
-            DeleteCustomerRequest request = new(id);
+            DeleteCustomerRequest request = new(CPF);
             await _mediator.Send(request, cancellationToken);
 
             return NoContent();

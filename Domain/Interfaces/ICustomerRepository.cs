@@ -8,8 +8,7 @@ namespace Domain.Interfaces
     {
         void Add(Customer customer);
         void Remove(Customer customer);
-        Task<Customer> GetCustomerByIdAsync(Guid CustomerId, CancellationToken cancellationToken);
-        Task<Customer> GetCustomerByCPFAsync(string CPF, CancellationToken cancellationToken);
+        Task<Customer?> GetCustomerByCPFAsync(string CPF, CancellationToken cancellationToken);
         Task<IEnumerable<Customer>> GetCustomersAsync(CancellationToken cancellationToken, Expression<Func<Customer, bool>>? filter = null);
     }
 }

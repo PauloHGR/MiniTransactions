@@ -20,14 +20,10 @@ namespace Infrastructure.Repositories
             _appDbContext.Customers.Add(customer);
         }
 
-        public async Task<Customer> GetCustomerByIdAsync(Guid CustomerId, CancellationToken cancellationToken)
+        public async Task<Customer?> GetCustomerByCPFAsync(string CPF, CancellationToken cancellationToken)
         {
-            return await _appDbContext.Customers.Where(c => c.CustomerId == CustomerId).FirstAsync(cancellationToken);
-        }
-
-        public async Task<Customer> GetCustomerByCPFAsync(string CPF, CancellationToken cancellationToken)
-        {
-            return await _appDbContext.Customers.Where(c => c.CPF == CPF).FirstAsync(cancellationToken);
+            var query = await _appDbContext.Customers.Where(c => c.CPF == CPF).FirstOrDefaultAsync(cancellationToken);
+            return query;
         }
 
         public void Remove(Customer customer)

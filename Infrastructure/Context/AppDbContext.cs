@@ -11,5 +11,10 @@ namespace Infrastructure
 
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Customer>().HasKey(c => c.CPF);
+        }
     }
 }

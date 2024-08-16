@@ -19,17 +19,18 @@ namespace Application.UseCases.CustomerCase.Delete
         }
         public async Task<DeleteCustomerResponse> Handle(DeleteCustomerRequest request, CancellationToken cancellationToken)
         {
-            var customer = await _customerRepository.GetCustomerByIdAsync(request.CustomerId, cancellationToken);
+            var customer = await _customerRepository.GetCustomerByCPFAsync(request.CPF, cancellationToken);
 
             if (customer == null)
             {
-                throw new NotFoundException($"Customer not found for Id {request.CustomerId}");
+                throw new NotFoundException($"Customer not found for CPF {request.CPF}");
             }
 
             _customerRepository.Remove(customer);
             await _unitOfWork.CompleteAsync(cancellationToken);
 
             return _mapper.Map<DeleteCustomerResponse>(customer);
+            throw new NotImplementedException();
         }
     }
 }
