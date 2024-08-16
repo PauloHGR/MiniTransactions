@@ -1,6 +1,7 @@
 ﻿using Application.UseCases.CustomerCase.Create;
 using Application.UseCases.CustomerCase.Delete;
 using Application.UseCases.CustomerCase.GetAll;
+using Application.UseCases.CustomerCase.GetCustomerByCPF;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,7 +20,7 @@ namespace MiniTransaction.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<CreateCustomerResponse>> SaveCustomerAsync(CreateCustomerRequest request, 
+        public async Task<ActionResult<CreateCustomerResponse>> SaveCustomerAsync(CreateCustomerRequest request,
             CancellationToken cancellationToken)
         {
             CreateCustomerResponse response = await _mediator.Send(request, cancellationToken);
@@ -27,9 +28,18 @@ namespace MiniTransaction.WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<GetAllCustomersResponse>>> GetAllCustomersAsync([FromQuery]GetAllCustomersRequest request, CancellationToken cancellationToken)
+        public async Task<ActionResult<List<GetAllCustomersResponse>>> GetAllCustomersAsync([FromQuery] GetAllCustomersRequest request, CancellationToken cancellationToken)
         {
             List<GetAllCustomersResponse> response = await _mediator.Send(request, cancellationToken);
+
+            return Ok(response);
+        }
+
+        [HttpGet("{CPF}")]
+        public async Task<ActionResult<GetCustomerByCpfResponse>> GetCustomerByCPFAsync(string CPF, CancellationToken cancellationToken)
+        {
+            GetCustomerByCPFRequest request = new(CPF);
+            GetCustomerByCpfResponse response = await _mediator.Send(request, cancellationToken);
 
             return Ok(response);
         }
