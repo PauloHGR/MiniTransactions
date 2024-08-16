@@ -17,7 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="UseCases\CustomerCase\Update\" />
     <Folder Include="UseCases\TransactionCase\" />
   </ItemGroup>
 

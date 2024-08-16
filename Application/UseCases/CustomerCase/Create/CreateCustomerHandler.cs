@@ -1,11 +1,7 @@
 ﻿using AutoMapper;
+using Domain.Exceptions;
 using Domain.Interfaces;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.UseCases.CustomerCase.Create
 {
@@ -24,6 +20,13 @@ namespace Application.UseCases.CustomerCase.Create
         public async Task<CreateCustomerResponse> Handle(CreateCustomerRequest request, CancellationToken cancellationToken)
         {
             var customer = _mapper.Map<Domain.Customers.Customer>(request);
+
+            var queryByCPF = await _customerRepository.GetCustomerByCPFAsync(request.CPF, cancellationToken);
+
+            if(queryByCPF != null)
+            {
+                throw new BadRequestException($"Customer already exists for CPF {request.CPF}");
+            }
 
             _customerRepository.Add(customer);
             await _unitOfWork.CompleteAsync(cancellationToken);

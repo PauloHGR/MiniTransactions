@@ -21,6 +21,7 @@ namespace MiniTransaction.WebApi.Middleware
                 response.StatusCode = ex switch
                 {
                     NotFoundException => (int)HttpStatusCode.NotFound,
+                    BadRequestException => (int)HttpStatusCode.BadRequest,
                     _ => (int)HttpStatusCode.InternalServerError,
                 };
 
