@@ -36,5 +36,10 @@ namespace Infrastructure.Repositories
             var customer = _appDbContext.Customers;
             return filter == null ? await customer.ToListAsync(cancellationToken) : await customer.Where(filter).ToListAsync(cancellationToken);
         }
+
+        public void Update(Customer customer)
+        {
+            _appDbContext.Customers.Update(customer);
+        }
     }
 }

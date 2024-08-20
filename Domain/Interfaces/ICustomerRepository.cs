@@ -10,5 +10,6 @@ namespace Domain.Interfaces
         void Remove(Customer customer);
         Task<Customer?> GetCustomerByCPFAsync(string CPF, CancellationToken cancellationToken);
         Task<IEnumerable<Customer>> GetCustomersAsync(CancellationToken cancellationToken, Expression<Func<Customer, bool>>? filter = null);
+        void Update(Customer customer);
     }
 }

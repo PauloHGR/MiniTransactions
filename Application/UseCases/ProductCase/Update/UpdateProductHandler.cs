@@ -1,13 +1,7 @@
-﻿using Application.UseCases.Product.Create;
-using AutoMapper;
+﻿using AutoMapper;
 using Domain.Exceptions;
 using Domain.Interfaces;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.UseCases.ProductCase.Update
 {

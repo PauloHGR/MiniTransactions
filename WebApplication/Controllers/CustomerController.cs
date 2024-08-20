@@ -2,6 +2,7 @@
 using Application.UseCases.CustomerCase.Delete;
 using Application.UseCases.CustomerCase.GetAll;
 using Application.UseCases.CustomerCase.GetCustomerByCPF;
+using Application.UseCases.CustomerCase.Update;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -50,6 +51,18 @@ namespace MiniTransaction.WebApi.Controllers
             DeleteCustomerRequest request = new(CPF);
             await _mediator.Send(request, cancellationToken);
 
+            return NoContent();
+        }
+
+        [HttpPut("{CPF}")]
+        public async Task<ActionResult<UpdateCustomerResponse>> UpdateCustomerAsync(string CPF, 
+            [FromBody] UpdateCustomerRequestByWeb requestByWeb,
+            CancellationToken cancellationToken)
+        {
+
+            UpdateCustomerRequest request = new(CPF, requestByWeb.Name, requestByWeb.Email);
+            
+            await _mediator.Send(request, cancellationToken);
             return NoContent();
         }
     }

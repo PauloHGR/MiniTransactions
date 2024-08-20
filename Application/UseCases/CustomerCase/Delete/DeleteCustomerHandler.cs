@@ -30,7 +30,6 @@ namespace Application.UseCases.CustomerCase.Delete
             await _unitOfWork.CompleteAsync(cancellationToken);
 
             return _mapper.Map<DeleteCustomerResponse>(customer);
-            throw new NotImplementedException();
         }
     }
 }
