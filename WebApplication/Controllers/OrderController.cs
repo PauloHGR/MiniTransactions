@@ -1,4 +1,5 @@
 ﻿using Application.UseCases.OrderCase.Create;
+using Application.UseCases.OrderCase.Get;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,7 +10,8 @@ namespace MiniTransaction.WebApi.Controllers
     public class OrderController : ControllerBase
     {
         private readonly IMediator _mediator;
-        public OrderController(IMediator mediator) { 
+        public OrderController(IMediator mediator)
+        {
             _mediator = mediator;
         }
 
@@ -18,6 +20,13 @@ namespace MiniTransaction.WebApi.Controllers
         {
             var order = await _mediator.Send(request, cancellationToken);
             return Created("Order", order);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<List<GetOrderResponse>>> GetOrdersAsync([FromQuery]GetOrderRequest request, CancellationToken cancellationToken)
+        {
+            var orders = await _mediator.Send(request, cancellationToken);
+            return Ok(orders);
         }
     }
 }

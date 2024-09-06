@@ -48,15 +48,19 @@ namespace Application.UseCases.OrderCase.Create
                 ProductId = product.ProductId,
                 Quantity = request.Quantity,
                 TotalValue = product.Price * request.Quantity,
-                IsPayed = false
+                IsPayed = false,
+                Customer = customer,
+                Product = product
+                
             };
 
             _orderRepository.Add(order);
 
             product.Quantity -= request.Quantity;
             _productRepository.Update(product);
-
+            
             await _unitOfWork.CompleteAsync(cancellationToken);
+      
             return _mapper.Map<CreateOrderResponse>(order);
         }
     }
