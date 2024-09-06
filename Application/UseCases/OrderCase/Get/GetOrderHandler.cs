@@ -1,5 +1,4 @@
-﻿using Application.UseCases.CustomerCase.GetAll;
-using AutoMapper;
+﻿using AutoMapper;
 using Domain.Interfaces;
 using MediatR;
 
@@ -32,6 +31,7 @@ namespace Application.UseCases.OrderCase.Get
                 return _mapper.Map<List<GetOrderResponse>>(orders);
             }
             var AllOrders = await _orderRepository.GetOrdersAsync(cancellationToken);
+            AllOrders = AllOrders.Skip(request.Offset).Take(request.Size);
             return _mapper.Map<List<GetOrderResponse>>(AllOrders);
 
         }

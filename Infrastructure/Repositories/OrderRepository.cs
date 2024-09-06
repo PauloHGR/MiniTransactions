@@ -1,9 +1,7 @@
-﻿using Domain.Customers;
-using Domain.Interfaces;
+﻿using Domain.Interfaces;
 using Domain.Orders;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
-using System.Linq;
 
 namespace Infrastructure.Repositories
 {
@@ -27,9 +25,19 @@ namespace Infrastructure.Repositories
             return filter == null ? await order.ToListAsync(cancellationToken) : await order.Where(filter).ToListAsync(cancellationToken);
         }
 
-        public async Task<Order?> GetOrderByIdAsync(Guid id, CancellationToken cancellationToken)
+        public async Task<Order?> GetOrderByIdAsync(string id, CancellationToken cancellationToken)
         {
-            return await _appDbContext.Orders.FirstOrDefaultAsync(o => o.Id == id, cancellationToken);
+            return await _appDbContext.Orders.FirstOrDefaultAsync(o => o.Id.ToString() == id, cancellationToken);
+        }
+
+        public void Update(Order order)
+        {
+            _appDbContext.Update(order);
+        }
+
+        public void Remove(Order order)
+        {
+            _appDbContext.Orders.Remove(order);
         }
     }
 }
